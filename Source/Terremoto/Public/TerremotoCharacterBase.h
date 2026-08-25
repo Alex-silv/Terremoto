@@ -8,6 +8,8 @@
 #include "TerremotoCharacterBase.generated.h"
 
 class UAbilitySystemComponent;
+class UTerremotoAttributeSet;
+class UGameplayEffect;
 
 UCLASS()
 class TERREMOTO_API ATerremotoCharacterBase :
@@ -28,6 +30,12 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Abilities")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Attributes")
+	TObjectPtr<UTerremotoAttributeSet> AttributeSet;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attributes")
+	TSubclassOf<UGameplayEffect> InitialAttributesEffect;
 
 public:	
 	// Called every frame

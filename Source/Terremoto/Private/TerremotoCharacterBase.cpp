@@ -3,14 +3,17 @@
 
 #include "TerremotoCharacterBase.h"
 #include "AbilitySystemComponent.h"
+#include "TerremotoAttributeSet.h"
+#include "GameplayEffect.h"
 
 // Sets default values
 ATerremotoCharacterBase::ATerremotoCharacterBase()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
 
 	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+	AttributeSet = CreateDefaultSubobject<UTerremotoAttributeSet>(TEXT("AttributeSet"));
 
 }
 
@@ -22,13 +25,34 @@ UAbilitySystemComponent* ATerremotoCharacterBase::GetAbilitySystemComponent() co
 // Called when the game starts or when spawned
 void ATerremotoCharacterBase::BeginPlay()
 {
-	Super::BeginPlay();
+	
 
-	if(AbilitySystemComponent)
+	if (AbilitySystemComponent)
 	{
 		AbilitySystemComponent->InitAbilityActorInfo(this, this);
+
+		if (InitialAttributesEffect)
+		{
+			FGameplayEffectContextHandle EffectContext =
+				AbilitySystemComponent->MakeEffectContext();
+
+			FGameplayEffectSpecHandle SpecHandle = AbilitySystemComponent->MakeOutgoingSpec(
+				InitialAttributesEffect,
+				1,
+				EffectContext
+			);
+
+			if (SpecHandle.IsValid())
+			{
+				AbilitySystemComponent->ApplyGameplayEffectSpecToSelf(
+					*SpecHandle.Data.Get()
+				);
+
+			}
+		}
 	}
-	
+
+	Super::BeginPlay();
 }
 
 // Called every frame
