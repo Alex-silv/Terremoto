@@ -50,5 +50,5 @@ public:
 
 	ATTRIBUTE_ACCESSORS(UTerremotoAttributeSet, MaxMana)
 
-	funcvirtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
+	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 };
