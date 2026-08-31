@@ -25,7 +25,7 @@ UAbilitySystemComponent* ATerremotoGameplayActorBase::GetAbilitySystemComponent(
 // Called when the game starts or when spawned
 void ATerremotoGameplayActorBase::BeginPlay()
 {
-	Super::BeginPlay();
+	
 
 	if (AbilitySystemComponent)
 	{
@@ -42,6 +42,8 @@ void ATerremotoGameplayActorBase::BeginPlay()
 			}
 		}
 	}
+
+	Super::BeginPlay();
 	
 }
 
