@@ -25,4 +25,8 @@ void UTerremotoAttributeSet::PostGameplayEffectExecute(
     {
 		SetMana(FMath::Clamp(GetMana(), 0.f, GetMaxMana()));
 	}
+    else if (Data.EvaluatedData.Attribute == GetMovementSpeedAttribute())
+    {
+        // Handle movement speed changes if needed
+	}
 }

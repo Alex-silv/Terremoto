@@ -11,6 +11,8 @@ class UAbilitySystemComponent;
 class UTerremotoAttributeSet;
 class UGameplayEffect;
 
+struct FOnAttributeChangeData;
+
 UCLASS()
 class TERREMOTO_API ATerremotoCharacterBase :
 	public ACharacter,
@@ -27,6 +29,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	void OnMovementSpeedChanged(const FOnAttributeChangeData& Data);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Abilities")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;

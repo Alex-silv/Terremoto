@@ -50,5 +50,10 @@ public:
 
 	ATTRIBUTE_ACCESSORS(UTerremotoAttributeSet, MaxMana)
 
+	/*movement speed*/
+	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData MovementSpeed;
+
+	ATTRIBUTE_ACCESSORS(UTerremotoAttributeSet, MovementSpeed)
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 };
